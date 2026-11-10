@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Pro Fitness Gym | Official Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-white font-sans">
+
+  <!-- Demo Banner for Owner -->
+  <div class="bg-yellow-500 text-black text-center py-2 px-4 text-xs md:text-sm font-bold">
+    ⚡ LIVE DEMO PREVIEW — Yeh sample website aapke Gym ke liye design ki gayi hai. Pasand aane par is पट्टी (banner) ko hata diya jayega!
+  </div>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient-to-b from-red-900/40 to-zinc-950 py-16 px-6 text-center border-b border-zinc-800">
+    <span id="gym-rating" class="bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded-full">⭐ Top Rated Gym in Your City</span>
+    <h1 id="gym-name" class="text-4xl md:text-6xl font-extrabold mt-4 tracking-tight uppercase">FITNESS FANTASY 2.0</h1>
+    <p class="text-zinc-400 mt-3 max-w-xl mx-auto">Transform your body with modern equipment, certified trainers, and high-energy workouts.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a id="wa-btn-top" href="#" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">💬 Join via WhatsApp</a>
+      <a href="#plans" class="bg-zinc-800 hover:bg-zinc-700 text-white font-semibold py-3 px-6 rounded-lg transition">View Membership Plans</a>
+    </div>
+  </header>
+
+  <!-- Info Bar -->
+  <section class="max-w-5xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+      <h3 class="text-red-500 font-bold">📍 Location</h3>
+      <p id="gym-addr" class="text-sm text-zinc-300 mt-1">2nd Floor, T.P Market, GT Rd, Asansol</p>
+    </div>
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+      <h3 class="text-red-500 font-bold">⏰ Opening Hours</h3>
+      <p id="gym-time" class="text-sm text-zinc-300 mt-1">Mon - Sat: 6:00 AM – 10:00 PM</p>
+    </div>
+    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
+      <h3 class="text-red-500 font-bold">📞 Direct Contact</h3>
+      <p id="gym-phone-display" class="text-sm text-zinc-300 mt-1">+91 70014 23057</p>
+    </div>
+  </section>
+
+  <!-- Facilities -->
+  <section class="max-w-5xl mx-auto py-8 px-6">
+    <h2 class="text-2xl font-bold text-center mb-6">Why Train With Us?</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">🏋️‍♂️ Imported Machines</div>
+      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">🏃‍♂️ Cardio & CrossFit Zone</div>
+      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">🥗 Custom Diet Chart</div>
+      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">💪 Personal Training</div>
+    </div>
+  </section>
+
+  <!-- Membership Plans -->
+  <section id="plans" class="max-w-5xl mx-auto py-12 px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">Membership Plans</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 text-center">
+        <h3 class="text-xl font-bold">1 Month</h3>
+        <p class="text-3xl font-extrabold text-red-500 my-4">₹1,000</p>
+        <p class="text-zinc-400 text-sm mb-6">Strength + Cardio + General Guidance</p>
+        <a id="wa-plan-1" href="#" target="_blank" class="block bg-zinc-800 hover:bg-red-600 py-2 rounded-lg font-semibold transition">Enquire on WhatsApp</a>
+      </div>
+      <div class="bg-zinc-900 p-6 rounded-xl border-2 border-red-600 text-center relative">
+        <span class="bg-red-600 text-xs px-2 py-1 rounded absolute -top-3 left-1/2 -translate-x-1/2">POPULAR</span>
+        <h3 class="text-xl font-bold">3 Months</h3>
+        <p class="text-3xl font-extrabold text-red-500 my-4">₹2,500</p>
+        <p class="text-zinc-400 text-sm mb-6">Free Diet Chart + Workout Split</p>
+        <a id="wa-plan-2" href="#" target="_blank" class="block bg-red-600 hover:bg-red-700 py-2 rounded-lg font-semibold transition">Enquire on WhatsApp</a>
+      </div>
+      <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 text-center">
+        <h3 class="text-xl font-bold">1 Year</h3>
+        <p class="text-3xl font-extrabold text-red-500 my-4">₹8,000</p>
+        <p class="text-zinc-400 text-sm mb-6">Maximum Savings + Monthly Body Check</p>
+        <a id="wa-plan-3" href="#" target="_blank" class="block bg-zinc-800 hover:bg-red-600 py-2 rounded-lg font-semibold transition">Enquire on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name') || 'Fitness Fantasy 2.0';
+    const addr = params.get('addr') || '2nd Floor, T.P Market, GT Rd, Asansol';
+    const phone = params.get('phone') || '917001423057';
+    const time = params.get('time') || 'Mon - Sat: 6:00 AM – 10:00 PM';
+    const rating = params.get('rating') || '4.9★ Rated on Google Maps';
+
+    document.getElementById('page-title').innerText = name + ' | Official Website';
+    document.getElementById('gym-name').innerText = name;
+    document.getElementById('gym-addr').innerText = addr;
+    document.getElementById('gym-time').innerText = time;
+    document.getElementById('gym-rating').innerText = '⭐ ' + rating;
+    document.getElementById('gym-phone-display').innerText = '+' + phone;
+
+    const waBase = 'https://wa.me/' + phone.replace(/[^0-9]/g, '') + '?text=';
+    document.getElementById('wa-btn-top').href = waBase + encodeURIComponent('Hi ' + name + ', I want to enquire about joining your gym!');
+    document.getElementById('wa-plan-1').href = waBase + encodeURIComponent('Hi ' + name + ', I want details about the 1 Month Plan.');
+    document.getElementById('wa-plan-2').href = waBase + encodeURIComponent('Hi ' + name + ', I want details about the 3 Months Plan.');
+    document.getElementById('wa-plan-3').href = waBase + encodeURIComponent('Hi ' + name + ', I want details about the 1 Year Plan.');
+  </script>
+</body>
+</html>
