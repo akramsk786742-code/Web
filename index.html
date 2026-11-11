@@ -3,100 +3,236 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">Pro Fitness Gym | Official Website</title>
+  <title id="page-title">Official Business Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-zinc-950 text-white font-sans">
+<body id="body-bg" class="bg-zinc-950 text-white transition-colors duration-300">
 
-  <!-- Demo Banner for Owner -->
-  <div class="bg-yellow-500 text-black text-center py-2 px-4 text-xs md:text-sm font-bold">
-    ⚡ LIVE DEMO PREVIEW — Yeh sample website aapke Gym ke liye design ki gayi hai. Pasand aane par is पट्टी (banner) ko hata diya jayega!
+  <!-- Demo Top Bar -->
+  <div class="bg-amber-400 text-black text-center py-2 px-4 text-xs md:text-sm font-bold shadow-md">
+    ⚡ LIVE DEMO PREVIEW — Yeh sample website aapke business ke hisaab se design ki gayi hai. Pasand aane par yeh पट्टी (banner) hata di jayegi!
   </div>
 
   <!-- Hero Section -->
-  <header class="bg-gradient-to-b from-red-900/40 to-zinc-950 py-16 px-6 text-center border-b border-zinc-800">
-    <span id="gym-rating" class="bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded-full">⭐ Top Rated Gym in Your City</span>
-    <h1 id="gym-name" class="text-4xl md:text-6xl font-extrabold mt-4 tracking-tight uppercase">FITNESS FANTASY 2.0</h1>
-    <p class="text-zinc-400 mt-3 max-w-xl mx-auto">Transform your body with modern equipment, certified trainers, and high-energy workouts.</p>
+  <header id="hero-bg" class="py-16 px-6 text-center border-b border-white/10">
+    <span id="biz-badge" class="text-xs font-bold uppercase px-3 py-1 rounded-full">⭐ Top Rated in Your City</span>
+    <h1 id="biz-name" class="text-4xl md:text-6xl font-extrabold mt-4 tracking-tight uppercase">BUSINESS NAME</h1>
+    <p id="biz-tagline" class="mt-3 max-w-xl mx-auto text-base md:text-lg opacity-85">Quality service and trusted experience.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a id="wa-btn-top" href="#" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">💬 Join via WhatsApp</a>
-      <a href="#plans" class="bg-zinc-800 hover:bg-zinc-700 text-white font-semibold py-3 px-6 rounded-lg transition">View Membership Plans</a>
+      <a id="wa-btn-top" href="#" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition flex items-center gap-2">
+        💬 <span id="cta-main-text">Book / Order on WhatsApp</span>
+      </a>
+      <a href="#offerings" id="secondary-btn" class="font-semibold py-3 px-6 rounded-xl transition border border-white/20">
+        View Services & Rates
+      </a>
     </div>
   </header>
 
-  <!-- Info Bar -->
+  <!-- Location, Timing & Phone Info Bar -->
   <section class="max-w-5xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
-      <h3 class="text-red-500 font-bold">📍 Location</h3>
-      <p id="gym-addr" class="text-sm text-zinc-300 mt-1">2nd Floor, T.P Market, GT Rd, Asansol</p>
+    <div id="info-card-1" class="p-5 rounded-2xl border">
+      <h3 id="accent-title-1" class="font-bold text-base">📍 Location / Address</h3>
+      <p id="biz-addr" class="text-sm mt-1 opacity-85">Main Market Road, Your City</p>
     </div>
-    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
-      <h3 class="text-red-500 font-bold">⏰ Opening Hours</h3>
-      <p id="gym-time" class="text-sm text-zinc-300 mt-1">Mon - Sat: 6:00 AM – 10:00 PM</p>
+    <div id="info-card-2" class="p-5 rounded-2xl border">
+      <h3 id="accent-title-2" class="font-bold text-base">⏰ Opening Hours</h3>
+      <p id="biz-time" class="text-sm mt-1 opacity-85">Mon - Sun: 9:00 AM – 9:00 PM</p>
     </div>
-    <div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800">
-      <h3 class="text-red-500 font-bold">📞 Direct Contact</h3>
-      <p id="gym-phone-display" class="text-sm text-zinc-300 mt-1">+91 70014 23057</p>
+    <div id="info-card-3" class="p-5 rounded-2xl border">
+      <h3 id="accent-title-3" class="font-bold text-base">📞 Direct Contact</h3>
+      <p id="biz-phone" class="text-sm mt-1 opacity-85">+91 98765 43210</p>
     </div>
   </section>
 
-  <!-- Facilities -->
+  <!-- Special Features / Highlights -->
   <section class="max-w-5xl mx-auto py-8 px-6">
-    <h2 class="text-2xl font-bold text-center mb-6">Why Train With Us?</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">🏋️‍♂️ Imported Machines</div>
-      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">🏃‍♂️ Cardio & CrossFit Zone</div>
-      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">🥗 Custom Diet Chart</div>
-      <div class="bg-zinc-900 p-4 rounded-lg border border-zinc-800">💪 Personal Training</div>
+    <h2 id="features-heading" class="text-2xl font-bold text-center mb-6">Why Choose Us?</h2>
+    <div id="features-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm font-medium">
+      <!-- Injected dynamically by business type -->
     </div>
   </section>
 
-  <!-- Membership Plans -->
-  <section id="plans" class="max-w-5xl mx-auto py-12 px-6">
-    <h2 class="text-3xl font-bold text-center mb-8">Membership Plans</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 text-center">
-        <h3 class="text-xl font-bold">1 Month</h3>
-        <p class="text-3xl font-extrabold text-red-500 my-4">₹1,000</p>
-        <p class="text-zinc-400 text-sm mb-6">Strength + Cardio + General Guidance</p>
-        <a id="wa-plan-1" href="#" target="_blank" class="block bg-zinc-800 hover:bg-red-600 py-2 rounded-lg font-semibold transition">Enquire on WhatsApp</a>
-      </div>
-      <div class="bg-zinc-900 p-6 rounded-xl border-2 border-red-600 text-center relative">
-        <span class="bg-red-600 text-xs px-2 py-1 rounded absolute -top-3 left-1/2 -translate-x-1/2">POPULAR</span>
-        <h3 class="text-xl font-bold">3 Months</h3>
-        <p class="text-3xl font-extrabold text-red-500 my-4">₹2,500</p>
-        <p class="text-zinc-400 text-sm mb-6">Free Diet Chart + Workout Split</p>
-        <a id="wa-plan-2" href="#" target="_blank" class="block bg-red-600 hover:bg-red-700 py-2 rounded-lg font-semibold transition">Enquire on WhatsApp</a>
-      </div>
-      <div class="bg-zinc-900 p-6 rounded-xl border border-zinc-800 text-center">
-        <h3 class="text-xl font-bold">1 Year</h3>
-        <p class="text-3xl font-extrabold text-red-500 my-4">₹8,000</p>
-        <p class="text-zinc-400 text-sm mb-6">Maximum Savings + Monthly Body Check</p>
-        <a id="wa-plan-3" href="#" target="_blank" class="block bg-zinc-800 hover:bg-red-600 py-2 rounded-lg font-semibold transition">Enquire on WhatsApp</a>
-      </div>
+  <!-- Services / Menu / Packages Section -->
+  <section id="offerings" class="max-w-5xl mx-auto py-12 px-6">
+    <h2 id="offerings-heading" class="text-3xl font-bold text-center mb-2">Our Services & Packages</h2>
+    <p id="offerings-sub" class="text-center text-sm opacity-75 mb-8">Click below to enquire or book directly on WhatsApp</p>
+    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- 3 Custom Cards injected dynamically -->
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-6 text-center text-xs opacity-70 mt-8">
+    Website Designed & Powered by <span class="font-bold underline">SmartFix & Cyber Point</span>
+  </footer>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const name = params.get('name') || 'Fitness Fantasy 2.0';
-    const addr = params.get('addr') || '2nd Floor, T.P Market, GT Rd, Asansol';
+    const type = (params.get('type') || 'gym').toLowerCase();
+    const name = params.get('name') || 'Royal Business Hub';
+    const addr = params.get('addr') || 'GT Road, Main Market, Asansol';
     const phone = params.get('phone') || '917001423057';
-    const time = params.get('time') || 'Mon - Sat: 6:00 AM – 10:00 PM';
+    const time = params.get('time') || 'Mon - Sat: 9:00 AM – 9:00 PM';
     const rating = params.get('rating') || '4.9★ Rated on Google Maps';
 
-    document.getElementById('page-title').innerText = name + ' | Official Website';
-    document.getElementById('gym-name').innerText = name;
-    document.getElementById('gym-addr').innerText = addr;
-    document.getElementById('gym-time').innerText = time;
-    document.getElementById('gym-rating').innerText = '⭐ ' + rating;
-    document.getElementById('gym-phone-display').innerText = '+' + phone;
+    const themes = {
+      gym: {
+        bodyBg: 'bg-zinc-950 text-white',
+        heroBg: 'bg-gradient-to-b from-red-900/50 to-zinc-950',
+        cardBg: 'bg-zinc-900 border-zinc-800 text-white',
+        badgeBg: 'bg-red-600 text-white',
+        accentText: 'text-red-500',
+        btnBg: 'bg-red-600 hover:bg-red-700 text-white',
+        tagline: 'Transform your body with modern equipment, certified trainers, and high-energy workouts.',
+        ctaText: 'Join Gym via WhatsApp',
+        featuresTitle: 'Our Gym Facilities',
+        features: ['🏋️‍♂️ Imported Machines', '🏃‍♂️ Cardio & CrossFit Zone', '🥗 Custom Diet Chart', '💪 Personal Trainers'],
+        offeringsTitle: 'Membership Plans',
+        cards: [
+          { title: '1 Month Plan', price: '₹1,000', desc: 'Strength + Cardio + General Trainer Guidance', popular: false },
+          { title: '3 Months Pro', price: '₹2,500', desc: 'Save ₹500 + Free Diet Chart & Workout Split', popular: true },
+          { title: '1 Year Transformation', price: '₹8,000', desc: 'Best Value + Monthly BMI & Fitness Check', popular: false }
+        ]
+      },
+      salon: {
+        bodyBg: 'bg-stone-950 text-pink-50',
+        heroBg: 'bg-gradient-to-b from-pink-900/50 to-stone-950',
+        cardBg: 'bg-stone-900 border-pink-900/50 text-pink-50',
+        badgeBg: 'bg-pink-600 text-white',
+        accentText: 'text-pink-400',
+        btnBg: 'bg-pink-600 hover:bg-pink-700 text-white',
+        tagline: 'Premium hair styling, skin care, facial spa, and bridal makeover by expert stylists.',
+        ctaText: 'Book Appointment on WhatsApp',
+        featuresTitle: 'Why Clients Love Our Salon',
+        features: ['💇‍♀️ Expert Hair Stylists', '👰 HD Bridal & Party Makeup', '✨ Branded Skin Products', '🌿 Hygienic & AC Studio'],
+        offeringsTitle: 'Popular Salon Packages',
+        cards: [
+          { title: 'Haircut & Grooming', price: '₹299+', desc: 'Stylish Haircut, Hair Wash, Blow Dry & Beard/Face Cleanup', popular: false },
+          { title: 'Glow Facial & Spa Combo', price: '₹999', desc: 'De-Tan, Fruit/Gold Facial, Hair Spa & Threading/Massage', popular: true },
+          { title: 'Party & Bridal Makeover', price: 'Custom', desc: 'HD Makeup, Hairdo, Draping & Pre-Bridal Skin Packages', popular: false }
+        ]
+      },
+      cafe: {
+        bodyBg: 'bg-amber-950 text-amber-50',
+        heroBg: 'bg-gradient-to-b from-orange-800/60 to-amber-950',
+        cardBg: 'bg-amber-900/60 border-orange-800/60 text-amber-50',
+        badgeBg: 'bg-orange-500 text-white',
+        accentText: 'text-orange-400',
+        btnBg: 'bg-orange-500 hover:bg-orange-600 text-white',
+        tagline: 'Freshly prepared delicious snacks, beverages, sweets, and celebratory treats made with love.',
+        ctaText: 'Order / Book Table on WhatsApp',
+        featuresTitle: 'Our Specialities',
+        features: ['🍔 100% Fresh & Hygienic', '☕ Signature Coffee & snacks', '🎂 Party & Bulk Orders', '🛵 Quick Takeaway & Delivery'],
+        offeringsTitle: 'Bestsellers & Combos',
+        cards: [
+          { title: 'Quick Snacks & Beverages', price: '₹99+', desc: 'Special Tea/Coffee, Sandwiches, Burgers, Momos & Rolls', popular: false },
+          { title: 'Couple / Friends Combo', price: '₹299', desc: '2 Main Snacks + 2 Cold Coffees/Drinks + Fries/Sweets', popular: true },
+          { title: 'Birthday & Party Orders', price: 'Special Rate', desc: 'Custom Cakes, Snack Boxes & Table Booking for Celebrations', popular: false }
+        ]
+      },
+      clinic: {
+        bodyBg: 'bg-slate-50 text-slate-900',
+        heroBg: 'bg-gradient-to-b from-sky-100 to-slate-50',
+        cardBg: 'bg-white border-slate-200 text-slate-900 shadow-sm',
+        badgeBg: 'bg-sky-600 text-white',
+        accentText: 'text-sky-600',
+        btnBg: 'bg-sky-600 hover:bg-sky-700 text-white',
+        tagline: 'Dedicated healthcare, accurate diagnosis, and compassionate medical consultation for your family.',
+        ctaText: 'Book Doctor Appointment',
+        featuresTitle: 'Clinic Facilities',
+        features: ['🩺 Experienced Doctor', '🧪 Accurate Diagnosis', '💊 Pharmacy & First-Aid', '⚡ Minimal Waiting Time'],
+        offeringsTitle: 'Consultation & Services',
+        cards: [
+          { title: 'General Consultation (OPD)', price: 'Book Slot', desc: 'Complete checkup, prescription & health advice for all ages', popular: true },
+          { title: 'Routine Health Checkup', price: 'Enquire', desc: 'BP, Sugar, Dental/Eye/Skin or Specialized Care & Follow-up', popular: false },
+          { title: 'Emergency / Home Visit', price: 'Call Direct', desc: 'Urgent medical guidance and priority clinic appointment', popular: false }
+        ]
+      },
+      coaching: {
+        bodyBg: 'bg-slate-950 text-white',
+        heroBg: 'bg-gradient-to-b from-blue-900/60 to-slate-950',
+        cardBg: 'bg-slate-900 border-blue-900/60 text-white',
+        badgeBg: 'bg-yellow-500 text-black',
+        accentText: 'text-yellow-400',
+        btnBg: 'bg-blue-600 hover:bg-blue-700 text-white',
+        tagline: 'Concept-based learning, small batch sizes, regular mock tests, and proven exam results.',
+        ctaText: 'Enquire for Admission',
+        featuresTitle: 'Why Students Succeed Here',
+        features: ['👨‍🏫 Experienced Faculty', '📝 Printed Study Notes', '📊 Weekly Mock Tests', '🎯 Doubt Clearing Classes'],
+        offeringsTitle: 'Courses & Batches Open',
+        cards: [
+          { title: 'Foundation / School Batch', price: 'Admission Open', desc: 'Complete syllabus coverage, notes & weekly test series', popular: false },
+          { title: 'Target / Board Exam Batch', price: 'Free Demo Class', desc: 'Special exam preparation, previous year papers & 1-on-1 focus', popular: true },
+          { title: 'Computer / Skill Course', price: 'Certified', desc: 'Practical hands-on training with certificate & career guidance', popular: false }
+        ]
+      },
+      shop: {
+        bodyBg: 'bg-slate-950 text-white',
+        heroBg: 'bg-gradient-to-b from-emerald-900/50 to-slate-950',
+        cardBg: 'bg-slate-900 border-emerald-900/50 text-white',
+        badgeBg: 'bg-emerald-600 text-white',
+        accentText: 'text-emerald-400',
+        btnBg: 'bg-emerald-600 hover:bg-emerald-700 text-white',
+        tagline: '100% genuine products, best market prices, and trusted local service in your neighbourhood.',
+        ctaText: 'Check Price on WhatsApp',
+        featuresTitle: 'Why Shop With Us?',
+        features: ['✅ 100% Genuine Items', '💰 Best Wholesale/Retail Rate', '⚡ Instant Billing & Support', '🚚 Local Delivery Available'],
+        offeringsTitle: 'Top Categories & Offers',
+        cards: [
+          { title: 'New Arrivals & Bestsellers', price: 'Best Price', desc: 'Latest stock available at special local discount rates', popular: true },
+          { title: 'Combo & Bulk Deals', price: 'Extra Off', desc: 'Special pricing on family packs, festival & bulk orders', popular: false },
+          { title: 'Repair / Custom Order', price: 'Instant Quote', desc: 'Send photo or requirement on WhatsApp for instant price', popular: false }
+        ]
+      }
+    };
 
-    const waBase = 'https://wa.me/' + phone.replace(/[^0-9]/g, '') + '?text=';
-    document.getElementById('wa-btn-top').href = waBase + encodeURIComponent('Hi ' + name + ', I want to enquire about joining your gym!');
-    document.getElementById('wa-plan-1').href = waBase + encodeURIComponent('Hi ' + name + ', I want details about the 1 Month Plan.');
-    document.getElementById('wa-plan-2').href = waBase + encodeURIComponent('Hi ' + name + ', I want details about the 3 Months Plan.');
-    document.getElementById('wa-plan-3').href = waBase + encodeURIComponent('Hi ' + name + ', I want details about the 1 Year Plan.');
+    const t = themes[type] || themes.gym;
+
+    document.getElementById('page-title').innerText = name + ' | Official Website';
+    document.getElementById('body-bg').className = t.bodyBg + ' min-h-screen';
+    document.getElementById('hero-bg').className = t.heroBg + ' py-16 px-6 text-center border-b border-white/10';
+    document.getElementById('biz-badge').className = t.badgeBg + ' text-xs font-bold uppercase px-3 py-1 rounded-full';
+    document.getElementById('biz-badge').innerText = '⭐ ' + rating;
+    document.getElementById('biz-name').innerText = name;
+    document.getElementById('biz-tagline').innerText = t.tagline;
+    document.getElementById('cta-main-text').innerText = t.ctaText;
+
+    ['1','2','3'].forEach(i => {
+      document.getElementById('info-card-' + i).className = t.cardBg + ' p-5 rounded-2xl border';
+      document.getElementById('accent-title-' + i).className = t.accentText + ' font-bold text-base';
+    });
+
+    document.getElementById('biz-addr').innerText = addr;
+    document.getElementById('biz-time').innerText = time;
+    document.getElementById('biz-phone').innerText = '+' + phone;
+    document.getElementById('features-heading').innerText = t.featuresTitle;
+    document.getElementById('offerings-heading').innerText = t.offeringsTitle;
+
+    const cleanPhone = phone.replace(/[^0-9]/g, '');
+    const waBase = 'https://wa.me/' + cleanPhone + '?text=';
+    document.getElementById('wa-btn-top').href = waBase + encodeURIComponent('Hi ' + name + ', I visited your website and want to enquire!');
+
+    // Render Features
+    const fGrid = document.getElementById('features-grid');
+    fGrid.innerHTML = t.features.map(f => `<div class="${t.cardBg} p-4 rounded-xl border">${f}</div>`).join('');
+
+    // Render Cards
+    const cGrid = document.getElementById('cards-grid');
+    cGrid.innerHTML = t.cards.map(c => `
+      <div class="${t.cardBg} p-6 rounded-2xl border ${c.popular ? 'ring-2 ring-amber-400 relative' : ''} text-center flex flex-col justify-between">
+        ${c.popular ? '<span class="bg-amber-400 text-black font-bold text-xs px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">MOST POPULAR</span>' : ''}
+        <div>
+          <h3 class="text-xl font-bold">${c.title}</h3>
+          <p class="text-2xl font-extrabold ${t.accentText} my-3">${c.price}</p>
+          <p class="text-sm opacity-80 mb-6">${c.desc}</p>
+        </div>
+        <a href="${waBase + encodeURIComponent('Hi ' + name + ', I want details about: ' + c.title)}" target="_blank" class="block ${t.btnBg} py-2.5 px-4 rounded-xl font-semibold transition">
+          Enquire on WhatsApp
+        </a>
+      </div>
+    `).join('');
   </script>
 </body>
 </html>
