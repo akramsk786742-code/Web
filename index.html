@@ -3,431 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">Official Business Website</title>
+  <title id="page-title">Official Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-    .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 18s linear infinite; }
-  </style>
+  <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body id="app-body" class="min-h-screen flex flex-col justify-between">
+<body class="bg-stone-950 text-white min-h-screen flex flex-col justify-between">
 
-  <!-- Top Demo Banner -->
-  <div class="bg-amber-400 text-black text-center py-2 px-4 text-xs md:text-sm font-bold shadow-md z-50">
-    ⚡ LIVE DEMO PREVIEW — Yeh sample website aapke business ke hisaab se design ki gayi hai. Pasand aane par yeh top banner hata diya jayega!
+  <!-- Top Custom Demo Notice Bar -->
+  <div class="bg-amber-400 text-black text-center py-2.5 px-4 text-xs md:text-sm font-bold shadow-md z-50">
+    ⚡ LIVE DEMO PREVIEW — Yeh sample website Google par uplabdh aapki details se banayi gayi hai. Aap isme apna poora asli Menu, Photos aur Rates judwa sakte hain!
   </div>
 
-  <!-- Main Dynamic Container (Changes 100% by Business Type) -->
+  <!-- Main Content -->
   <main id="app-root" class="flex-grow"></main>
 
-  <!-- Common Footer -->
-  <footer id="app-footer" class="py-6 text-center text-xs opacity-75 border-t border-current/10 mt-12">
-    Website Designed & Powered by <span class="font-bold underline">SmartFix & Cyber Point</span>
+  <!-- Customization CTA Banner for Owner -->
+  <section class="max-w-5xl mx-auto px-6 my-8">
+    <div class="bg-gradient-to-r from-emerald-900/60 to-teal-900/60 border border-emerald-500/40 rounded-2xl p-6 text-center">
+      <h3 class="text-lg md:text-xl font-extrabold text-emerald-300">✨ Kya Aap Is Website Mein Apni Dukaan Ki Asli Photos & Poora Menu Dalwana Chahte Hain?</h3>
+      <p class="text-xs md:text-sm text-emerald-100/80 mt-1">Hum aapke Menu Card ki har item, aapke dukaan ka photo, Google Map location aur Table QR Code isme jod kar aapko denge.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-xs text-stone-400 border-t border-stone-800">
+    Website Designed & Powered by <span class="text-white font-bold">SmartFix & Cyber Point</span>
   </footer>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const type = (params.get('type') || 'gym').toLowerCase();
-    const name = params.get('name') || 'Royal Business Hub';
-    const addr = params.get('addr') || 'GT Road, Main Market, Asansol';
+    const name = params.get('name') || 'Royal Family Restaurant';
+    const addr = params.get('addr') || 'City Center, Main Road';
     const phone = params.get('phone') || '917001423057';
-    const time = params.get('time') || 'Mon - Sat: 9:00 AM – 9:00 PM';
-    const rating = params.get('rating') || '4.9★ Rated';
+    const time = params.get('time') || '11:00 AM – 10:30 PM';
+    const rating = params.get('rating') || '4.8★ Rated';
+    const sub = params.get('sub') || 'Authentic Taste, Fresh Ingredients & Hygienic Preparation';
+    const cuisine = (params.get('cuisine') || 'multi').toLowerCase();
 
     const cleanPhone = phone.replace(/[^0-9]/g, '');
     const waLink = (msg) => `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
-    document.getElementById('page-title').innerText = `${name} | Official Website`;
+    document.getElementById('page-title').innerText = `${name} | Official Menu & Website`;
 
-    const root = document.getElementById('app-root');
-    const body = document.getElementById('app-body');
+    // Real HD Food Images Library (Automatically matched by dish keyword!)
+    const foodPhotos = {
+      biryani: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80",
+      chicken: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80",
+      mutton: "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=600&q=80",
+      paneer: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=600&q=80",
+      noodles: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80",
+      momo: "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=600&q=80",
+      roll: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80",
+      pizza: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
+      burger: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+      dosa: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80",
+      thali: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80",
+      sweet: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80",
+      cake: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+      coffee: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
+      tandoori: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80",
+      fish: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80",
+      default: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80"
+    };
 
-    // ==========================================
-    // 1. GYM LAYOUT (Bold + BMI Calculator + Plans)
-    // ==========================================
-    if (type === 'gym') {
-      body.className = "bg-zinc-950 text-white min-h-screen flex flex-col justify-between";
-      root.innerHTML = `
-        <header class="bg-gradient-to-b from-red-900/60 to-zinc-950 py-16 px-6 text-center border-b border-zinc-800">
-          <span class="bg-red-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-full">🔥 ${rating} Fitness Center</span>
-          <h1 class="text-4xl md:text-6xl font-extrabold mt-4 tracking-tight uppercase">${name}</h1>
-          <p class="mt-3 max-w-xl mx-auto text-zinc-300">Heavy-duty imported machines, certified personal trainers, and result-driven transformation programs.</p>
+    const heroBanners = {
+      biryani: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1400&q=80",
+      cafe: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1400&q=80",
+      south: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=1400&q=80",
+      sweet: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1400&q=80",
+      multi: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80"
+    };
+
+    function getDishPhoto(dishName) {
+      const lower = dishName.toLowerCase();
+      for (const key in foodPhotos) {
+        if (lower.includes(key)) return foodPhotos[key];
+      }
+      return foodPhotos.default;
+    }
+
+    // Parse Custom Items from URL: &items=Dish Name:₹150:Bestseller|Dish 2:₹90:Spicy
+    const rawItems = params.get('items');
+    let menuList = [];
+    if (rawItems) {
+      menuList = rawItems.split('|').map(str => {
+        const [dish, price, tag] = str.split(':');
+        return {
+          dish: dish || 'Special Dish',
+          price: price || '₹149',
+          tag: tag || 'Popular',
+          img: getDishPhoto(dish || '')
+        };
+      });
+    } else {
+      menuList = [
+        { dish: "Special Chicken Dum Biryani", price: "₹160", tag: "Bestseller", img: foodPhotos.biryani },
+        { dish: "Paneer Butter Masala & Butter Naan", price: "₹180", tag: "Chef Special", img: foodPhotos.paneer },
+        { dish: "Crispy Chicken / Veg Hakka Noodles", price: "₹120", tag: "Chinese", img: foodPhotos.noodles },
+        { dish: "Tandoori Chicken Kabab Platter", price: "₹240", tag: "Must Try", img: foodPhotos.tandoori },
+        { dish: "Special Masala Kulhad Chai & Snacks", price: "₹60", tag: "Fresh", img: foodPhotos.coffee },
+        { dish: "Family Combo Pack (Serves 3-4)", price: "₹499", tag: "Value Deal", img: foodPhotos.thali }
+      ];
+    }
+
+    const bannerUrl = heroBanners[cuisine] || heroBanners.multi;
+
+    document.getElementById('app-root').innerHTML = `
+      <!-- Hero Banner with Real Background Image -->
+      <header class="relative bg-cover bg-center py-20 px-6 border-b border-stone-800" style="background-image: linear-gradient(to bottom, rgba(12,10,9,0.75), rgba(12,10,9,0.95)), url('${bannerUrl}');">
+        <div class="max-w-5xl mx-auto text-center">
+          <span class="bg-orange-600 text-white text-xs font-extrabold px-3.5 py-1 rounded-full uppercase shadow">⭐ ${rating} • Verified Local Restaurant</span>
+          <h1 class="text-4xl md:text-6xl font-extrabold mt-4 text-white tracking-tight">${name}</h1>
+          <p class="text-stone-300 text-sm md:text-lg max-w-2xl mx-auto mt-2">${sub}</p>
+          
+          <div class="mt-6 inline-flex flex-wrap justify-center gap-4 text-xs md:text-sm bg-stone-900/90 border border-stone-700 px-5 py-3 rounded-2xl text-stone-200">
+            <span>📍 ${addr}</span>
+            <span>•</span>
+            <span>⏰ ${time}</span>
+            <span>•</span>
+            <span>📞 +${phone}</span>
+          </div>
+
           <div class="mt-7 flex flex-wrap justify-center gap-4">
-            <a href="${waLink('Hi ' + name + ', I want to join the gym. Please share details!')}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-7 rounded-xl shadow-lg">💪 Join via WhatsApp</a>
-          </div>
-          <div class="mt-8 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 text-xs bg-zinc-900/90 p-4 rounded-2xl border border-zinc-800">
-            <div>📍 <span class="text-zinc-300">${addr}</span></div>
-            <div>⏰ <span class="text-zinc-300">${time}</span></div>
-            <div>📞 <span class="text-zinc-300">+${phone}</span></div>
-          </div>
-        </header>
-
-        <!-- Interactive BMI Calculator (Unique to Gym) -->
-        <section class="max-w-4xl mx-auto my-10 px-6">
-          <div class="bg-zinc-900 border border-red-900/50 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 class="text-xl font-bold text-red-500">⚡ Free Instant BMI Fitness Check</h2>
-              <p class="text-xs text-zinc-400 mt-1">Apna weight aur height daal kar apna Body Mass Index check karein:</p>
-            </div>
-            <div class="flex flex-wrap gap-2 items-center">
-              <input id="bmi-w" type="number" placeholder="Weight (kg)" class="bg-zinc-950 border border-zinc-700 rounded-lg px-3 py-2 text-sm w-28 text-white">
-              <input id="bmi-h" type="number" placeholder="Height (cm)" class="bg-zinc-950 border border-zinc-700 rounded-lg px-3 py-2 text-sm w-28 text-white">
-              <button onclick="calcBMI()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-bold">Check</button>
-            </div>
-            <div id="bmi-res" class="text-sm font-bold text-amber-400">Result: --</div>
-          </div>
-        </section>
-
-        <!-- 3 Pricing Plans -->
-        <section class="max-w-5xl mx-auto px-6 py-4">
-          <h2 class="text-2xl font-bold text-center mb-8">🏋️‍♂️ Membership Packages</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl text-center">
-              <h3 class="text-lg font-bold">1 Month Starter</h3>
-              <p class="text-3xl font-extrabold text-red-500 my-3">₹1,000</p>
-              <p class="text-xs text-zinc-400 mb-6">Full Gym + Cardio Access + General Floor Trainer</p>
-              <a href="${waLink('Hi ' + name + ', I want the 1 Month Gym Plan.')}" target="_blank" class="block bg-zinc-800 hover:bg-zinc-700 py-2.5 rounded-xl text-sm font-bold">Select Plan</a>
-            </div>
-            <div class="bg-zinc-900 border-2 border-red-500 p-6 rounded-2xl text-center relative">
-              <span class="bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">MOST POPULAR</span>
-              <h3 class="text-lg font-bold">3 Months Pro</h3>
-              <p class="text-3xl font-extrabold text-red-500 my-3">₹2,500</p>
-              <p class="text-xs text-zinc-400 mb-6">Strength + Cardio + Custom Diet Chart + Workout Split</p>
-              <a href="${waLink('Hi ' + name + ', I want the 3 Months Pro Plan.')}" target="_blank" class="block bg-red-600 hover:bg-red-700 py-2.5 rounded-xl text-sm font-bold">Select Plan</a>
-            </div>
-            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl text-center">
-              <h3 class="text-lg font-bold">1 Year Transformation</h3>
-              <p class="text-3xl font-extrabold text-red-500 my-3">₹8,000</p>
-              <p class="text-xs text-zinc-400 mb-6">Maximum Savings + Personal Assessment & Diet Support</p>
-              <a href="${waLink('Hi ' + name + ', I want the 1 Year Gym Plan.')}" target="_blank" class="block bg-zinc-800 hover:bg-zinc-700 py-2.5 rounded-xl text-sm font-bold">Select Plan</a>
-            </div>
-          </div>
-        </section>
-      `;
-      window.calcBMI = () => {
-        const w = parseFloat(document.getElementById('bmi-w').value);
-        const h = parseFloat(document.getElementById('bmi-h').value) / 100;
-        if (w > 0 && h > 0) {
-          const bmi = (w / (h * h)).toFixed(1);
-          const status = bmi < 18.5 ? 'Underweight (Gain Bulk)' : bmi < 25 ? 'Fit & Normal' : 'Overweight (Fat Loss)';
-          document.getElementById('bmi-res').innerText = `BMI: ${bmi} (${status})`;
-        }
-      };
-    }
-
-    // ==========================================
-    // 2. SALON LAYOUT (Luxury Split Header + Service Rate Menu List)
-    // ==========================================
-    else if (type === 'salon') {
-      body.className = "bg-stone-950 text-pink-50 min-h-screen flex flex-col justify-between";
-      const services = [
-        { item: "Stylish Haircut + Hair Wash + Blow Dry", price: "₹249" },
-        { item: "Beard Styling / Clean Shave + De-Tan", price: "₹149" },
-        { item: "L'Oréal Deep Nourishing Hair Spa", price: "₹599" },
-        { item: "O3+ / Gold Glow Facial + Face Cleanup", price: "₹799" },
-        { item: "Keratin / Hair Smoothening Treatment", price: "₹1,999+" },
-        { item: "HD Party & Bridal Makeup Package", price: "Book Trial" }
-      ];
-      root.innerHTML = `
-        <header class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center border-b border-pink-900/40">
-          <div>
-            <span class="bg-pink-600/20 text-pink-400 border border-pink-500/30 text-xs font-bold px-3 py-1 rounded-full">✨ Luxury Hair, Beauty & Bridal Studio</span>
-            <h1 class="text-4xl md:text-5xl font-extrabold mt-4 text-white">${name}</h1>
-            <p class="mt-3 text-sm text-pink-200/80">Experience top-class hair styling, skin rejuvenation, and bridal makeovers with 100% genuine international products.</p>
-            <div class="mt-6 flex gap-3">
-              <a href="${waLink('Hi ' + name + ', I want to book a salon appointment!')}" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full text-sm">💇‍♀️ Book Appointment</a>
-            </div>
-          </div>
-          <div class="bg-gradient-to-br from-pink-900/40 to-stone-900 border border-pink-800/40 p-6 rounded-3xl space-y-3 text-sm">
-            <h3 class="text-pink-400 font-bold text-base">📍 Studio Information</h3>
-            <p><strong>Address:</strong> ${addr}</p>
-            <p><strong>Timings:</strong> ${time}</p>
-            <p><strong>Booking Desk:</strong> +${phone}</p>
-            <p class="text-xs text-pink-300 pt-2">✔ Fully AC Hygienic Studio &nbsp; ✔ Branded Kits Only</p>
-          </div>
-        </header>
-
-        <!-- Parlour Service Price List (Menu Style instead of 3 boxes) -->
-        <section class="max-w-4xl mx-auto py-10 px-6">
-          <h2 class="text-2xl font-bold text-center text-pink-400 mb-2">✨ Service Rate Card & Menu</h2>
-          <p class="text-center text-xs text-pink-200/60 mb-6">Click 'Book' next to any service to reserve your slot on WhatsApp</p>
-          <div class="bg-stone-900/90 border border-pink-900/40 rounded-3xl divide-y divide-pink-950">
-            ${services.map(s => `
-              <div class="p-4 md:px-6 flex items-center justify-between gap-4">
-                <div>
-                  <h4 class="font-semibold text-sm md:text-base">${s.item}</h4>
-                </div>
-                <div class="flex items-center gap-4">
-                  <span class="font-extrabold text-pink-400 text-sm md:text-base">${s.price}</span>
-                  <a href="${waLink('Hi ' + name + ', I want to book: ' + s.item)}" target="_blank" class="bg-pink-600/20 hover:bg-pink-600 text-pink-300 hover:text-white border border-pink-500/40 px-3 py-1.5 rounded-full text-xs font-bold transition">Book Slot</a>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </section>
-      `;
-    }
-
-    // ==========================================
-    // 3. CAFE / RESTAURANT LAYOUT (Swiggy/Zomato Style Digital Food Menu)
-    // ==========================================
-    else if (type === 'cafe') {
-      body.className = "bg-amber-50 text-stone-900 min-h-screen flex flex-col justify-between";
-      const menu = [
-        { cat: "🔥 Bestseller Snacks", icon: "🍔", dish: "Special Cheese Burger / Paneer Roll", price: "₹89" },
-        { cat: "🔥 Bestseller Snacks", icon: "🥟", dish: "Steamed / Crispy Fried Momos (8 Pcs)", price: "₹79" },
-        { cat: "☕ Beverages & Shakes", icon: "🧋", dish: "Thick Cold Coffee with Ice Cream", price: "₹99" },
-        { cat: "☕ Beverages & Shakes", icon: "☕", dish: "Special Masala Kulhad Chai / Hot Coffee", price: "₹30" },
-        { cat: "🍕 Combos & Party", icon: "🍟", dish: "Friends Combo (2 Burgers + Fries + 2 Drinks)", price: "₹249" },
-        { cat: "🎂 Celebration Cakes", icon: "🎂", dish: "Fresh Birthday & Anniversary Cakes (1 Pond)", price: "₹299+" }
-      ];
-      root.innerHTML = `
-        <header class="bg-gradient-to-r from-orange-600 to-amber-600 text-white py-10 px-6 shadow-md">
-          <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-              <span class="bg-black/25 text-white text-xs font-bold px-3 py-1 rounded-full">🍽️ 100% Fresh & Hygienic Food</span>
-              <h1 class="text-3xl md:text-5xl font-extrabold mt-3">${name}</h1>
-              <p class="text-sm text-orange-100 mt-1">📍 ${addr} &nbsp;|&nbsp; ⏰ ${time}</p>
-            </div>
-            <a href="${waLink('Hi ' + name + ', I want to place a food order / book a table!')}" target="_blank" class="bg-white text-orange-600 font-extrabold py-3 px-6 rounded-2xl shadow-lg text-sm whitespace-nowrap">
-              🛵 Order on WhatsApp
+            <a href="${waLink('Hi ' + name + ', I saw your website and want to place an order / book a table!')}" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-extrabold py-3.5 px-8 rounded-xl shadow-lg text-sm transition">
+              🛵 Order Directly on WhatsApp
             </a>
-          </div>
-        </header>
-
-        <!-- Swiggy-Style Interactive Food Menu -->
-        <section class="max-w-4xl mx-auto py-8 px-6">
-          <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-extrabold text-stone-800">📋 Digital Quick-Order Menu</h2>
-            <span class="text-xs bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full border border-green-300">● Live Kitchen Open</span>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            ${menu.map(m => `
-              <div class="bg-white border border-amber-200 rounded-2xl p-4 shadow-sm flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="text-3xl bg-amber-100 w-14 h-14 rounded-xl flex items-center justify-center">${m.icon}</div>
-                  <div>
-                    <span class="text-[10px] font-bold uppercase text-orange-600">${m.cat}</span>
-                    <h4 class="font-bold text-stone-800 text-sm md:text-base">${m.dish}</h4>
-                    <p class="text-sm font-extrabold text-green-700 mt-0.5">${m.price}</p>
-                  </div>
-                </div>
-                <a href="${waLink('Hi ' + name + ', I want to order: ' + m.dish + ' (' + m.price + ')')}" target="_blank" class="bg-orange-50 hover:bg-orange-600 text-orange-600 hover:text-white border border-orange-300 font-extrabold px-4 py-1.5 rounded-xl text-xs transition">
-                  + ADD
-                </a>
-              </div>
-            `).join('')}
-          </div>
-        </section>
-      `;
-    }
-
-    // ==========================================
-    // 4. CLINIC / DOCTOR LAYOUT (Medical White + Instant OPD Appointment Form)
-    // ==========================================
-    else if (type === 'clinic') {
-      body.className = "bg-slate-50 text-slate-900 min-h-screen flex flex-col justify-between";
-      root.innerHTML = `
-        <header class="bg-white border-b border-slate-200 py-8 px-6">
-          <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-              <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">🩺 Verified Healthcare & Diagnostics</span>
-              <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">${name}</h1>
-              <p class="text-sm text-slate-600 mt-1">📍 ${addr} &nbsp;|&nbsp; 📞 Emergency/Reception: +${phone}</p>
-            </div>
-            <div class="text-right">
-              <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-lg">⏰ OPD Hours: ${time}</span>
-            </div>
-          </div>
-        </header>
-
-        <!-- 2-Column Doctor Info + Instant OPD Token Form -->
-        <section class="max-w-5xl mx-auto py-10 px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="space-y-6">
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <h2 class="text-lg font-bold text-sky-700 mb-3">🏥 Available Medical Services</h2>
-              <ul class="space-y-2.5 text-sm text-slate-700">
-                <li>✔ General OPD Consultation & Health Checkup</li>
-                <li>✔ Blood Pressure, Sugar (Diabetes) & Fever Care</li>
-                <li>✔ Prescription, Routine Lab Tests & First-Aid</li>
-                <li>✔ Child, Family & Senior Citizen Healthcare</li>
-              </ul>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <h2 class="text-lg font-bold text-sky-700 mb-3">🕒 Clinic Visiting Schedule</h2>
-              <table class="w-full text-left text-sm">
-                <tr class="border-b"><td class="py-2 font-semibold">Morning Shift</td><td class="py-2 text-slate-600">9:00 AM – 1:30 PM</td></tr>
-                <tr class="border-b"><td class="py-2 font-semibold">Evening Shift</td><td class="py-2 text-slate-600">5:00 PM – 9:00 PM</td></tr>
-                <tr><td class="py-2 font-semibold">Sunday / Emergency</td><td class="py-2 text-emerald-600 font-semibold">Prior Appointment</td></tr>
-              </table>
-            </div>
-          </div>
-
-          <!-- Patient WhatsApp Token Booking Form -->
-          <div class="bg-white p-6 md:p-8 rounded-2xl border-2 border-sky-500 shadow-md">
-            <h2 class="text-xl font-extrabold text-slate-900">📅 Book OPD Appointment Token</h2>
-            <p class="text-xs text-slate-500 mt-1 mb-5">Lambi line se bachein — apna naam bhar kar WhatsApp par direct appointment confirm karein:</p>
-            <div class="space-y-4 text-sm">
-              <div>
-                <label class="block font-semibold mb-1">Patient Name *</label>
-                <input id="pt-name" type="text" placeholder="Enter patient full name" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5">
-              </div>
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label class="block font-semibold mb-1">Age *</label>
-                  <input id="pt-age" type="number" placeholder="e.g. 28" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5">
-                </div>
-                <div>
-                  <label class="block font-semibold mb-1">Preferred Shift</label>
-                  <select id="pt-shift" class="w-full border border-slate-300 rounded-xl px-3 py-2.5 bg-white">
-                    <option>Morning Shift</option>
-                    <option>Evening Shift</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label class="block font-semibold mb-1">Problem / Symptoms (Optional)</label>
-                <input id="pt-prob" type="text" placeholder="e.g. Fever, Dental checkup, General OPD" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5">
-              </div>
-              <button onclick="bookOPD()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 rounded-xl shadow transition">
-                📲 Confirm Token on WhatsApp
-              </button>
-            </div>
-          </div>
-        </section>
-      `;
-      window.bookOPD = () => {
-        const pName = document.getElementById('pt-name').value || 'Patient';
-        const pAge = document.getElementById('pt-age').value || '--';
-        const pShift = document.getElementById('pt-shift').value;
-        const pProb = document.getElementById('pt-prob').value || 'Consultation';
-        const msg = `Hello ${name}, I want to book an OPD Appointment:\n• Patient Name: ${pName}\n• Age: ${pAge}\n• Shift: ${pShift}\n• Purpose: ${pProb}`;
-        window.open(waLink(msg), '_blank');
-      };
-    }
-
-    // ==========================================
-    // 5. COACHING / INSTITUTE LAYOUT (Ticker + Batch Timing Table)
-    // ==========================================
-    else if (type === 'coaching') {
-      body.className = "bg-slate-950 text-white min-h-screen flex flex-col justify-between";
-      root.innerHTML = `
-        <!-- Moving Admission Notice Ticker -->
-        <div class="bg-blue-700 text-white text-xs py-2 overflow-hidden border-b border-blue-500">
-          <div class="animate-marquee font-semibold">
-            📢 ADMISSIONS OPEN FOR NEW SESSION! &nbsp;&nbsp;|&nbsp;&nbsp; 🎯 Free 3-Day Demo Classes Available &nbsp;&nbsp;|&nbsp;&nbsp; 📝 Printed Study Material & Weekly OMR Mock Tests &nbsp;&nbsp;|&nbsp;&nbsp; 📞 Call Now: +${phone}
+            <a href="#menu-section" class="bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 px-6 rounded-xl text-sm border border-white/20 transition">
+              📖 View Full Menu
+            </a>
           </div>
         </div>
+      </header>
 
-        <header class="max-w-5xl mx-auto py-12 px-6 text-center">
-          <span class="bg-yellow-400 text-black text-xs font-extrabold px-3 py-1 rounded-full uppercase">🏆 Top Result-Oriented Institute</span>
-          <h1 class="text-4xl md:text-5xl font-extrabold mt-4 text-white">${name}</h1>
-          <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto mt-2">📍 ${addr} &nbsp;|&nbsp; ⏰ ${time}</p>
-          <div class="mt-6 flex flex-wrap justify-center gap-4">
-            <a href="${waLink('Hello ' + name + ', I want to enquire about Admission & Free Demo Class!')}" target="_blank" class="bg-yellow-400 hover:bg-yellow-500 text-black font-extrabold py-3 px-7 rounded-xl text-sm shadow-lg">
-              🎓 Book Free Demo Class
-            </a>
+      <!-- Real Photo Menu Grid -->
+      <section id="menu-section" class="max-w-5xl mx-auto py-12 px-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-8">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white">🍽️ Popular Menu & Specialties</h2>
+            <p class="text-xs text-stone-400 mt-1">Click '+ Order on WhatsApp' on any item for quick takeaway or delivery</p>
           </div>
-        </header>
+          <span class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-700 px-3 py-1.5 rounded-full font-bold self-start">● Kitchen Open & Accepting Orders</span>
+        </div>
 
-        <!-- Batch Timings & Courses Table (Unique to Coaching) -->
-        <section class="max-w-4xl mx-auto py-6 px-6">
-          <h2 class="text-xl font-bold text-yellow-400 mb-4">📚 Active Courses & Batch Schedule</h2>
-          <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-2xl">
-            <table class="w-full text-left text-sm">
-              <thead class="bg-slate-800 text-slate-300 text-xs uppercase">
-                <tr>
-                  <th class="p-4">Course / Class Batch</th>
-                  <th class="p-4">Key Features</th>
-                  <th class="p-4">Batch Status</th>
-                  <th class="p-4">Action</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-800">
-                <tr>
-                  <td class="p-4 font-bold">Foundation / Academic Batch</td>
-                  <td class="p-4 text-slate-400 text-xs">Full Syllabus + Printed Notes + Doubt Class</td>
-                  <td class="p-4"><span class="bg-green-900/50 text-green-400 text-xs px-2.5 py-1 rounded-full">Admission Open</span></td>
-                  <td class="p-4"><a href="${waLink('Hi ' + name + ', fees details for Foundation Batch?')}" target="_blank" class="text-yellow-400 font-bold text-xs underline">Ask Fee →</a></td>
-                </tr>
-                <tr>
-                  <td class="p-4 font-bold">Board / Target Exam Special</td>
-                  <td class="p-4 text-slate-400 text-xs">Weekly Test Series + Previous 10 Yr Papers</td>
-                  <td class="p-4"><span class="bg-amber-900/50 text-amber-300 text-xs px-2.5 py-1 rounded-full">Limited Seats</span></td>
-                  <td class="p-4"><a href="${waLink('Hi ' + name + ', fees details for Target Batch?')}" target="_blank" class="text-yellow-400 font-bold text-xs underline">Ask Fee →</a></td>
-                </tr>
-                <tr>
-                  <td class="p-4 font-bold">Special Skill / Computer Course</td>
-                  <td class="p-4 text-slate-400 text-xs">100% Practical Training + ISO Certificate</td>
-                  <td class="p-4"><span class="bg-green-900/50 text-green-400 text-xs px-2.5 py-1 rounded-full">New Batch</span></td>
-                  <td class="p-4"><a href="${waLink('Hi ' + name + ', fees details for Practical Course?')}" target="_blank" class="text-yellow-400 font-bold text-xs underline">Ask Fee →</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-      `;
-    }
-
-    // ==========================================
-    // 6. LOCAL SHOP / MOBILE & REPAIR HUB LAYOUT (Catalog Grid + Quick Quote Box)
-    // ==========================================
-    else {
-      body.className = "bg-slate-950 text-white min-h-screen flex flex-col justify-between";
-      const items = [
-        { icon: "📱", name: "Smartphone Display & Touch Replacement", tag: "1 Hour Service" },
-        { icon: "🔋", name: "Original Battery, Charging Jack & IC Fix", tag: "Warranty Available" },
-        { icon: "🎧", name: " Tempered Glass, Covers, Earbuds & Chargers", tag: "Wholesale Price" },
-        { icon: "💻", name: "Online Form, PAN, Aadhaar & Printout", tag: "Instant Cyber Work" },
-        { icon: "🌐", name: "Business Website, Poster & Excel Work", tag: "Digital Services" },
-        { icon: "🚚", name: "Bulk / Custom Order & Home Delivery", tag: "Direct WhatsApp" }
-      ];
-      root.innerHTML = `
-        <header class="bg-gradient-to-b from-emerald-900/50 to-slate-950 py-12 px-6 border-b border-slate-800">
-          <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-              <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">✔ Trusted Local Store & Service Hub</span>
-              <h1 class="text-3xl md:text-5xl font-extrabold mt-3">${name}</h1>
-              <p class="text-sm text-slate-300 mt-2">📍 ${addr} &nbsp;|&nbsp; ⏰ ${time} &nbsp;|&nbsp; 📞 +${phone}</p>
-            </div>
-            <!-- Quick WhatsApp Price Check Bar -->
-            <div class="bg-slate-900 p-4 rounded-2xl border border-emerald-800/60 w-full md:w-80">
-              <p class="text-xs font-bold text-emerald-400 mb-2">⚡ Check Price / Repair Rate Instantly:</p>
-              <div class="flex gap-2">
-                <input id="shop-item" type="text" placeholder="Type model or item name..." class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs w-full text-white">
-                <button onclick="askPrice()" class="bg-emerald-600 hover:bg-emerald-700 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap">Ask Rate</button>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <section class="max-w-5xl mx-auto py-10 px-6">
-          <h2 class="text-2xl font-bold mb-6">🛒 Products & Services Catalog</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-            ${items.map(i => `
-              <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between">
-                <div>
-                  <div class="flex justify-between items-start">
-                    <span class="text-3xl">${i.icon}</span>
-                    <span class="text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded-full">${i.tag}</span>
-                  </div>
-                  <h3 class="font-bold text-base mt-4">${i.name}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          ${menuList.map(item => `
+            <div class="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden shadow-lg flex flex-col justify-between hover:border-orange-500/50 transition">
+              <div>
+                <div class="relative h-44 w-full bg-stone-800">
+                  <img src="${item.img}" alt="${item.dish}" class="w-full h-full object-cover">
+                  <span class="absolute top-3 left-3 bg-black/80 text-orange-400 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full border border-orange-500/30">${item.tag}</span>
                 </div>
-                <a href="${waLink('Hi ' + name + ', please share rate/details for: ' + i.name)}" target="_blank" class="mt-5 block text-center bg-slate-800 hover:bg-emerald-600 py-2 rounded-xl text-xs font-bold transition">
-                  💬 Enquire Rate on WhatsApp
+                <div class="p-4">
+                  <div class="flex justify-between items-start gap-2">
+                    <h3 class="font-bold text-base text-white">${item.dish}</h3>
+                    <span class="font-extrabold text-lg text-emerald-400 whitespace-nowrap">${item.price}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="px-4 pb-4">
+                <a href="${waLink('Hi ' + name + ', I would like to order: ' + item.dish + ' (' + item.price + ')')}" target="_blank" class="block w-full text-center bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
+                  + Order on WhatsApp
                 </a>
               </div>
-            `).join('')}
-          </div>
-        </section>
-      `;
-      window.askPrice = () => {
-        const q = document.getElementById('shop-item').value || 'Product/Service';
-        window.open(waLink(`Hi ${name}, please tell me the price/availability for: ${q}`), '_blank');
-      };
-    }
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `;
   </script>
 </body>
 </html>
