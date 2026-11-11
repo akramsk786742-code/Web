@@ -5,66 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Official Business Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Inter', sans-serif; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+    .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 18s linear infinite; }
+  </style>
 </head>
-<body id="body-bg" class="bg-zinc-950 text-white transition-colors duration-300">
+<body id="app-body" class="min-h-screen flex flex-col justify-between">
 
-  <!-- Demo Top Bar -->
-  <div class="bg-amber-400 text-black text-center py-2 px-4 text-xs md:text-sm font-bold shadow-md">
-    ⚡ LIVE DEMO PREVIEW — Yeh sample website aapke business ke hisaab se design ki gayi hai. Pasand aane par yeh पट्टी (banner) hata di jayegi!
+  <!-- Top Demo Banner -->
+  <div class="bg-amber-400 text-black text-center py-2 px-4 text-xs md:text-sm font-bold shadow-md z-50">
+    ⚡ LIVE DEMO PREVIEW — Yeh sample website aapke business ke hisaab se design ki gayi hai. Pasand aane par yeh top banner hata diya jayega!
   </div>
 
-  <!-- Hero Section -->
-  <header id="hero-bg" class="py-16 px-6 text-center border-b border-white/10">
-    <span id="biz-badge" class="text-xs font-bold uppercase px-3 py-1 rounded-full">⭐ Top Rated in Your City</span>
-    <h1 id="biz-name" class="text-4xl md:text-6xl font-extrabold mt-4 tracking-tight uppercase">BUSINESS NAME</h1>
-    <p id="biz-tagline" class="mt-3 max-w-xl mx-auto text-base md:text-lg opacity-85">Quality service and trusted experience.</p>
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a id="wa-btn-top" href="#" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition flex items-center gap-2">
-        💬 <span id="cta-main-text">Book / Order on WhatsApp</span>
-      </a>
-      <a href="#offerings" id="secondary-btn" class="font-semibold py-3 px-6 rounded-xl transition border border-white/20">
-        View Services & Rates
-      </a>
-    </div>
-  </header>
+  <!-- Main Dynamic Container (Changes 100% by Business Type) -->
+  <main id="app-root" class="flex-grow"></main>
 
-  <!-- Location, Timing & Phone Info Bar -->
-  <section class="max-w-5xl mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-    <div id="info-card-1" class="p-5 rounded-2xl border">
-      <h3 id="accent-title-1" class="font-bold text-base">📍 Location / Address</h3>
-      <p id="biz-addr" class="text-sm mt-1 opacity-85">Main Market Road, Your City</p>
-    </div>
-    <div id="info-card-2" class="p-5 rounded-2xl border">
-      <h3 id="accent-title-2" class="font-bold text-base">⏰ Opening Hours</h3>
-      <p id="biz-time" class="text-sm mt-1 opacity-85">Mon - Sun: 9:00 AM – 9:00 PM</p>
-    </div>
-    <div id="info-card-3" class="p-5 rounded-2xl border">
-      <h3 id="accent-title-3" class="font-bold text-base">📞 Direct Contact</h3>
-      <p id="biz-phone" class="text-sm mt-1 opacity-85">+91 98765 43210</p>
-    </div>
-  </section>
-
-  <!-- Special Features / Highlights -->
-  <section class="max-w-5xl mx-auto py-8 px-6">
-    <h2 id="features-heading" class="text-2xl font-bold text-center mb-6">Why Choose Us?</h2>
-    <div id="features-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm font-medium">
-      <!-- Injected dynamically by business type -->
-    </div>
-  </section>
-
-  <!-- Services / Menu / Packages Section -->
-  <section id="offerings" class="max-w-5xl mx-auto py-12 px-6">
-    <h2 id="offerings-heading" class="text-3xl font-bold text-center mb-2">Our Services & Packages</h2>
-    <p id="offerings-sub" class="text-center text-sm opacity-75 mb-8">Click below to enquire or book directly on WhatsApp</p>
-    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- 3 Custom Cards injected dynamically -->
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-white/10 py-6 text-center text-xs opacity-70 mt-8">
+  <!-- Common Footer -->
+  <footer id="app-footer" class="py-6 text-center text-xs opacity-75 border-t border-current/10 mt-12">
     Website Designed & Powered by <span class="font-bold underline">SmartFix & Cyber Point</span>
   </footer>
 
@@ -75,164 +34,400 @@
     const addr = params.get('addr') || 'GT Road, Main Market, Asansol';
     const phone = params.get('phone') || '917001423057';
     const time = params.get('time') || 'Mon - Sat: 9:00 AM – 9:00 PM';
-    const rating = params.get('rating') || '4.9★ Rated on Google Maps';
-
-    const themes = {
-      gym: {
-        bodyBg: 'bg-zinc-950 text-white',
-        heroBg: 'bg-gradient-to-b from-red-900/50 to-zinc-950',
-        cardBg: 'bg-zinc-900 border-zinc-800 text-white',
-        badgeBg: 'bg-red-600 text-white',
-        accentText: 'text-red-500',
-        btnBg: 'bg-red-600 hover:bg-red-700 text-white',
-        tagline: 'Transform your body with modern equipment, certified trainers, and high-energy workouts.',
-        ctaText: 'Join Gym via WhatsApp',
-        featuresTitle: 'Our Gym Facilities',
-        features: ['🏋️‍♂️ Imported Machines', '🏃‍♂️ Cardio & CrossFit Zone', '🥗 Custom Diet Chart', '💪 Personal Trainers'],
-        offeringsTitle: 'Membership Plans',
-        cards: [
-          { title: '1 Month Plan', price: '₹1,000', desc: 'Strength + Cardio + General Trainer Guidance', popular: false },
-          { title: '3 Months Pro', price: '₹2,500', desc: 'Save ₹500 + Free Diet Chart & Workout Split', popular: true },
-          { title: '1 Year Transformation', price: '₹8,000', desc: 'Best Value + Monthly BMI & Fitness Check', popular: false }
-        ]
-      },
-      salon: {
-        bodyBg: 'bg-stone-950 text-pink-50',
-        heroBg: 'bg-gradient-to-b from-pink-900/50 to-stone-950',
-        cardBg: 'bg-stone-900 border-pink-900/50 text-pink-50',
-        badgeBg: 'bg-pink-600 text-white',
-        accentText: 'text-pink-400',
-        btnBg: 'bg-pink-600 hover:bg-pink-700 text-white',
-        tagline: 'Premium hair styling, skin care, facial spa, and bridal makeover by expert stylists.',
-        ctaText: 'Book Appointment on WhatsApp',
-        featuresTitle: 'Why Clients Love Our Salon',
-        features: ['💇‍♀️ Expert Hair Stylists', '👰 HD Bridal & Party Makeup', '✨ Branded Skin Products', '🌿 Hygienic & AC Studio'],
-        offeringsTitle: 'Popular Salon Packages',
-        cards: [
-          { title: 'Haircut & Grooming', price: '₹299+', desc: 'Stylish Haircut, Hair Wash, Blow Dry & Beard/Face Cleanup', popular: false },
-          { title: 'Glow Facial & Spa Combo', price: '₹999', desc: 'De-Tan, Fruit/Gold Facial, Hair Spa & Threading/Massage', popular: true },
-          { title: 'Party & Bridal Makeover', price: 'Custom', desc: 'HD Makeup, Hairdo, Draping & Pre-Bridal Skin Packages', popular: false }
-        ]
-      },
-      cafe: {
-        bodyBg: 'bg-amber-950 text-amber-50',
-        heroBg: 'bg-gradient-to-b from-orange-800/60 to-amber-950',
-        cardBg: 'bg-amber-900/60 border-orange-800/60 text-amber-50',
-        badgeBg: 'bg-orange-500 text-white',
-        accentText: 'text-orange-400',
-        btnBg: 'bg-orange-500 hover:bg-orange-600 text-white',
-        tagline: 'Freshly prepared delicious snacks, beverages, sweets, and celebratory treats made with love.',
-        ctaText: 'Order / Book Table on WhatsApp',
-        featuresTitle: 'Our Specialities',
-        features: ['🍔 100% Fresh & Hygienic', '☕ Signature Coffee & snacks', '🎂 Party & Bulk Orders', '🛵 Quick Takeaway & Delivery'],
-        offeringsTitle: 'Bestsellers & Combos',
-        cards: [
-          { title: 'Quick Snacks & Beverages', price: '₹99+', desc: 'Special Tea/Coffee, Sandwiches, Burgers, Momos & Rolls', popular: false },
-          { title: 'Couple / Friends Combo', price: '₹299', desc: '2 Main Snacks + 2 Cold Coffees/Drinks + Fries/Sweets', popular: true },
-          { title: 'Birthday & Party Orders', price: 'Special Rate', desc: 'Custom Cakes, Snack Boxes & Table Booking for Celebrations', popular: false }
-        ]
-      },
-      clinic: {
-        bodyBg: 'bg-slate-50 text-slate-900',
-        heroBg: 'bg-gradient-to-b from-sky-100 to-slate-50',
-        cardBg: 'bg-white border-slate-200 text-slate-900 shadow-sm',
-        badgeBg: 'bg-sky-600 text-white',
-        accentText: 'text-sky-600',
-        btnBg: 'bg-sky-600 hover:bg-sky-700 text-white',
-        tagline: 'Dedicated healthcare, accurate diagnosis, and compassionate medical consultation for your family.',
-        ctaText: 'Book Doctor Appointment',
-        featuresTitle: 'Clinic Facilities',
-        features: ['🩺 Experienced Doctor', '🧪 Accurate Diagnosis', '💊 Pharmacy & First-Aid', '⚡ Minimal Waiting Time'],
-        offeringsTitle: 'Consultation & Services',
-        cards: [
-          { title: 'General Consultation (OPD)', price: 'Book Slot', desc: 'Complete checkup, prescription & health advice for all ages', popular: true },
-          { title: 'Routine Health Checkup', price: 'Enquire', desc: 'BP, Sugar, Dental/Eye/Skin or Specialized Care & Follow-up', popular: false },
-          { title: 'Emergency / Home Visit', price: 'Call Direct', desc: 'Urgent medical guidance and priority clinic appointment', popular: false }
-        ]
-      },
-      coaching: {
-        bodyBg: 'bg-slate-950 text-white',
-        heroBg: 'bg-gradient-to-b from-blue-900/60 to-slate-950',
-        cardBg: 'bg-slate-900 border-blue-900/60 text-white',
-        badgeBg: 'bg-yellow-500 text-black',
-        accentText: 'text-yellow-400',
-        btnBg: 'bg-blue-600 hover:bg-blue-700 text-white',
-        tagline: 'Concept-based learning, small batch sizes, regular mock tests, and proven exam results.',
-        ctaText: 'Enquire for Admission',
-        featuresTitle: 'Why Students Succeed Here',
-        features: ['👨‍🏫 Experienced Faculty', '📝 Printed Study Notes', '📊 Weekly Mock Tests', '🎯 Doubt Clearing Classes'],
-        offeringsTitle: 'Courses & Batches Open',
-        cards: [
-          { title: 'Foundation / School Batch', price: 'Admission Open', desc: 'Complete syllabus coverage, notes & weekly test series', popular: false },
-          { title: 'Target / Board Exam Batch', price: 'Free Demo Class', desc: 'Special exam preparation, previous year papers & 1-on-1 focus', popular: true },
-          { title: 'Computer / Skill Course', price: 'Certified', desc: 'Practical hands-on training with certificate & career guidance', popular: false }
-        ]
-      },
-      shop: {
-        bodyBg: 'bg-slate-950 text-white',
-        heroBg: 'bg-gradient-to-b from-emerald-900/50 to-slate-950',
-        cardBg: 'bg-slate-900 border-emerald-900/50 text-white',
-        badgeBg: 'bg-emerald-600 text-white',
-        accentText: 'text-emerald-400',
-        btnBg: 'bg-emerald-600 hover:bg-emerald-700 text-white',
-        tagline: '100% genuine products, best market prices, and trusted local service in your neighbourhood.',
-        ctaText: 'Check Price on WhatsApp',
-        featuresTitle: 'Why Shop With Us?',
-        features: ['✅ 100% Genuine Items', '💰 Best Wholesale/Retail Rate', '⚡ Instant Billing & Support', '🚚 Local Delivery Available'],
-        offeringsTitle: 'Top Categories & Offers',
-        cards: [
-          { title: 'New Arrivals & Bestsellers', price: 'Best Price', desc: 'Latest stock available at special local discount rates', popular: true },
-          { title: 'Combo & Bulk Deals', price: 'Extra Off', desc: 'Special pricing on family packs, festival & bulk orders', popular: false },
-          { title: 'Repair / Custom Order', price: 'Instant Quote', desc: 'Send photo or requirement on WhatsApp for instant price', popular: false }
-        ]
-      }
-    };
-
-    const t = themes[type] || themes.gym;
-
-    document.getElementById('page-title').innerText = name + ' | Official Website';
-    document.getElementById('body-bg').className = t.bodyBg + ' min-h-screen';
-    document.getElementById('hero-bg').className = t.heroBg + ' py-16 px-6 text-center border-b border-white/10';
-    document.getElementById('biz-badge').className = t.badgeBg + ' text-xs font-bold uppercase px-3 py-1 rounded-full';
-    document.getElementById('biz-badge').innerText = '⭐ ' + rating;
-    document.getElementById('biz-name').innerText = name;
-    document.getElementById('biz-tagline').innerText = t.tagline;
-    document.getElementById('cta-main-text').innerText = t.ctaText;
-
-    ['1','2','3'].forEach(i => {
-      document.getElementById('info-card-' + i).className = t.cardBg + ' p-5 rounded-2xl border';
-      document.getElementById('accent-title-' + i).className = t.accentText + ' font-bold text-base';
-    });
-
-    document.getElementById('biz-addr').innerText = addr;
-    document.getElementById('biz-time').innerText = time;
-    document.getElementById('biz-phone').innerText = '+' + phone;
-    document.getElementById('features-heading').innerText = t.featuresTitle;
-    document.getElementById('offerings-heading').innerText = t.offeringsTitle;
+    const rating = params.get('rating') || '4.9★ Rated';
 
     const cleanPhone = phone.replace(/[^0-9]/g, '');
-    const waBase = 'https://wa.me/' + cleanPhone + '?text=';
-    document.getElementById('wa-btn-top').href = waBase + encodeURIComponent('Hi ' + name + ', I visited your website and want to enquire!');
+    const waLink = (msg) => `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
+    document.getElementById('page-title').innerText = `${name} | Official Website`;
 
-    // Render Features
-    const fGrid = document.getElementById('features-grid');
-    fGrid.innerHTML = t.features.map(f => `<div class="${t.cardBg} p-4 rounded-xl border">${f}</div>`).join('');
+    const root = document.getElementById('app-root');
+    const body = document.getElementById('app-body');
 
-    // Render Cards
-    const cGrid = document.getElementById('cards-grid');
-    cGrid.innerHTML = t.cards.map(c => `
-      <div class="${t.cardBg} p-6 rounded-2xl border ${c.popular ? 'ring-2 ring-amber-400 relative' : ''} text-center flex flex-col justify-between">
-        ${c.popular ? '<span class="bg-amber-400 text-black font-bold text-xs px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">MOST POPULAR</span>' : ''}
-        <div>
-          <h3 class="text-xl font-bold">${c.title}</h3>
-          <p class="text-2xl font-extrabold ${t.accentText} my-3">${c.price}</p>
-          <p class="text-sm opacity-80 mb-6">${c.desc}</p>
+    // ==========================================
+    // 1. GYM LAYOUT (Bold + BMI Calculator + Plans)
+    // ==========================================
+    if (type === 'gym') {
+      body.className = "bg-zinc-950 text-white min-h-screen flex flex-col justify-between";
+      root.innerHTML = `
+        <header class="bg-gradient-to-b from-red-900/60 to-zinc-950 py-16 px-6 text-center border-b border-zinc-800">
+          <span class="bg-red-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-full">🔥 ${rating} Fitness Center</span>
+          <h1 class="text-4xl md:text-6xl font-extrabold mt-4 tracking-tight uppercase">${name}</h1>
+          <p class="mt-3 max-w-xl mx-auto text-zinc-300">Heavy-duty imported machines, certified personal trainers, and result-driven transformation programs.</p>
+          <div class="mt-7 flex flex-wrap justify-center gap-4">
+            <a href="${waLink('Hi ' + name + ', I want to join the gym. Please share details!')}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-7 rounded-xl shadow-lg">💪 Join via WhatsApp</a>
+          </div>
+          <div class="mt-8 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-3 text-xs bg-zinc-900/90 p-4 rounded-2xl border border-zinc-800">
+            <div>📍 <span class="text-zinc-300">${addr}</span></div>
+            <div>⏰ <span class="text-zinc-300">${time}</span></div>
+            <div>📞 <span class="text-zinc-300">+${phone}</span></div>
+          </div>
+        </header>
+
+        <!-- Interactive BMI Calculator (Unique to Gym) -->
+        <section class="max-w-4xl mx-auto my-10 px-6">
+          <div class="bg-zinc-900 border border-red-900/50 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h2 class="text-xl font-bold text-red-500">⚡ Free Instant BMI Fitness Check</h2>
+              <p class="text-xs text-zinc-400 mt-1">Apna weight aur height daal kar apna Body Mass Index check karein:</p>
+            </div>
+            <div class="flex flex-wrap gap-2 items-center">
+              <input id="bmi-w" type="number" placeholder="Weight (kg)" class="bg-zinc-950 border border-zinc-700 rounded-lg px-3 py-2 text-sm w-28 text-white">
+              <input id="bmi-h" type="number" placeholder="Height (cm)" class="bg-zinc-950 border border-zinc-700 rounded-lg px-3 py-2 text-sm w-28 text-white">
+              <button onclick="calcBMI()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-bold">Check</button>
+            </div>
+            <div id="bmi-res" class="text-sm font-bold text-amber-400">Result: --</div>
+          </div>
+        </section>
+
+        <!-- 3 Pricing Plans -->
+        <section class="max-w-5xl mx-auto px-6 py-4">
+          <h2 class="text-2xl font-bold text-center mb-8">🏋️‍♂️ Membership Packages</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl text-center">
+              <h3 class="text-lg font-bold">1 Month Starter</h3>
+              <p class="text-3xl font-extrabold text-red-500 my-3">₹1,000</p>
+              <p class="text-xs text-zinc-400 mb-6">Full Gym + Cardio Access + General Floor Trainer</p>
+              <a href="${waLink('Hi ' + name + ', I want the 1 Month Gym Plan.')}" target="_blank" class="block bg-zinc-800 hover:bg-zinc-700 py-2.5 rounded-xl text-sm font-bold">Select Plan</a>
+            </div>
+            <div class="bg-zinc-900 border-2 border-red-500 p-6 rounded-2xl text-center relative">
+              <span class="bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">MOST POPULAR</span>
+              <h3 class="text-lg font-bold">3 Months Pro</h3>
+              <p class="text-3xl font-extrabold text-red-500 my-3">₹2,500</p>
+              <p class="text-xs text-zinc-400 mb-6">Strength + Cardio + Custom Diet Chart + Workout Split</p>
+              <a href="${waLink('Hi ' + name + ', I want the 3 Months Pro Plan.')}" target="_blank" class="block bg-red-600 hover:bg-red-700 py-2.5 rounded-xl text-sm font-bold">Select Plan</a>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl text-center">
+              <h3 class="text-lg font-bold">1 Year Transformation</h3>
+              <p class="text-3xl font-extrabold text-red-500 my-3">₹8,000</p>
+              <p class="text-xs text-zinc-400 mb-6">Maximum Savings + Personal Assessment & Diet Support</p>
+              <a href="${waLink('Hi ' + name + ', I want the 1 Year Gym Plan.')}" target="_blank" class="block bg-zinc-800 hover:bg-zinc-700 py-2.5 rounded-xl text-sm font-bold">Select Plan</a>
+            </div>
+          </div>
+        </section>
+      `;
+      window.calcBMI = () => {
+        const w = parseFloat(document.getElementById('bmi-w').value);
+        const h = parseFloat(document.getElementById('bmi-h').value) / 100;
+        if (w > 0 && h > 0) {
+          const bmi = (w / (h * h)).toFixed(1);
+          const status = bmi < 18.5 ? 'Underweight (Gain Bulk)' : bmi < 25 ? 'Fit & Normal' : 'Overweight (Fat Loss)';
+          document.getElementById('bmi-res').innerText = `BMI: ${bmi} (${status})`;
+        }
+      };
+    }
+
+    // ==========================================
+    // 2. SALON LAYOUT (Luxury Split Header + Service Rate Menu List)
+    // ==========================================
+    else if (type === 'salon') {
+      body.className = "bg-stone-950 text-pink-50 min-h-screen flex flex-col justify-between";
+      const services = [
+        { item: "Stylish Haircut + Hair Wash + Blow Dry", price: "₹249" },
+        { item: "Beard Styling / Clean Shave + De-Tan", price: "₹149" },
+        { item: "L'Oréal Deep Nourishing Hair Spa", price: "₹599" },
+        { item: "O3+ / Gold Glow Facial + Face Cleanup", price: "₹799" },
+        { item: "Keratin / Hair Smoothening Treatment", price: "₹1,999+" },
+        { item: "HD Party & Bridal Makeup Package", price: "Book Trial" }
+      ];
+      root.innerHTML = `
+        <header class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center border-b border-pink-900/40">
+          <div>
+            <span class="bg-pink-600/20 text-pink-400 border border-pink-500/30 text-xs font-bold px-3 py-1 rounded-full">✨ Luxury Hair, Beauty & Bridal Studio</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold mt-4 text-white">${name}</h1>
+            <p class="mt-3 text-sm text-pink-200/80">Experience top-class hair styling, skin rejuvenation, and bridal makeovers with 100% genuine international products.</p>
+            <div class="mt-6 flex gap-3">
+              <a href="${waLink('Hi ' + name + ', I want to book a salon appointment!')}" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full text-sm">💇‍♀️ Book Appointment</a>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-pink-900/40 to-stone-900 border border-pink-800/40 p-6 rounded-3xl space-y-3 text-sm">
+            <h3 class="text-pink-400 font-bold text-base">📍 Studio Information</h3>
+            <p><strong>Address:</strong> ${addr}</p>
+            <p><strong>Timings:</strong> ${time}</p>
+            <p><strong>Booking Desk:</strong> +${phone}</p>
+            <p class="text-xs text-pink-300 pt-2">✔ Fully AC Hygienic Studio &nbsp; ✔ Branded Kits Only</p>
+          </div>
+        </header>
+
+        <!-- Parlour Service Price List (Menu Style instead of 3 boxes) -->
+        <section class="max-w-4xl mx-auto py-10 px-6">
+          <h2 class="text-2xl font-bold text-center text-pink-400 mb-2">✨ Service Rate Card & Menu</h2>
+          <p class="text-center text-xs text-pink-200/60 mb-6">Click 'Book' next to any service to reserve your slot on WhatsApp</p>
+          <div class="bg-stone-900/90 border border-pink-900/40 rounded-3xl divide-y divide-pink-950">
+            ${services.map(s => `
+              <div class="p-4 md:px-6 flex items-center justify-between gap-4">
+                <div>
+                  <h4 class="font-semibold text-sm md:text-base">${s.item}</h4>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="font-extrabold text-pink-400 text-sm md:text-base">${s.price}</span>
+                  <a href="${waLink('Hi ' + name + ', I want to book: ' + s.item)}" target="_blank" class="bg-pink-600/20 hover:bg-pink-600 text-pink-300 hover:text-white border border-pink-500/40 px-3 py-1.5 rounded-full text-xs font-bold transition">Book Slot</a>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    // ==========================================
+    // 3. CAFE / RESTAURANT LAYOUT (Swiggy/Zomato Style Digital Food Menu)
+    // ==========================================
+    else if (type === 'cafe') {
+      body.className = "bg-amber-50 text-stone-900 min-h-screen flex flex-col justify-between";
+      const menu = [
+        { cat: "🔥 Bestseller Snacks", icon: "🍔", dish: "Special Cheese Burger / Paneer Roll", price: "₹89" },
+        { cat: "🔥 Bestseller Snacks", icon: "🥟", dish: "Steamed / Crispy Fried Momos (8 Pcs)", price: "₹79" },
+        { cat: "☕ Beverages & Shakes", icon: "🧋", dish: "Thick Cold Coffee with Ice Cream", price: "₹99" },
+        { cat: "☕ Beverages & Shakes", icon: "☕", dish: "Special Masala Kulhad Chai / Hot Coffee", price: "₹30" },
+        { cat: "🍕 Combos & Party", icon: "🍟", dish: "Friends Combo (2 Burgers + Fries + 2 Drinks)", price: "₹249" },
+        { cat: "🎂 Celebration Cakes", icon: "🎂", dish: "Fresh Birthday & Anniversary Cakes (1 Pond)", price: "₹299+" }
+      ];
+      root.innerHTML = `
+        <header class="bg-gradient-to-r from-orange-600 to-amber-600 text-white py-10 px-6 shadow-md">
+          <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+              <span class="bg-black/25 text-white text-xs font-bold px-3 py-1 rounded-full">🍽️ 100% Fresh & Hygienic Food</span>
+              <h1 class="text-3xl md:text-5xl font-extrabold mt-3">${name}</h1>
+              <p class="text-sm text-orange-100 mt-1">📍 ${addr} &nbsp;|&nbsp; ⏰ ${time}</p>
+            </div>
+            <a href="${waLink('Hi ' + name + ', I want to place a food order / book a table!')}" target="_blank" class="bg-white text-orange-600 font-extrabold py-3 px-6 rounded-2xl shadow-lg text-sm whitespace-nowrap">
+              🛵 Order on WhatsApp
+            </a>
+          </div>
+        </header>
+
+        <!-- Swiggy-Style Interactive Food Menu -->
+        <section class="max-w-4xl mx-auto py-8 px-6">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-extrabold text-stone-800">📋 Digital Quick-Order Menu</h2>
+            <span class="text-xs bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full border border-green-300">● Live Kitchen Open</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${menu.map(m => `
+              <div class="bg-white border border-amber-200 rounded-2xl p-4 shadow-sm flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="text-3xl bg-amber-100 w-14 h-14 rounded-xl flex items-center justify-center">${m.icon}</div>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase text-orange-600">${m.cat}</span>
+                    <h4 class="font-bold text-stone-800 text-sm md:text-base">${m.dish}</h4>
+                    <p class="text-sm font-extrabold text-green-700 mt-0.5">${m.price}</p>
+                  </div>
+                </div>
+                <a href="${waLink('Hi ' + name + ', I want to order: ' + m.dish + ' (' + m.price + ')')}" target="_blank" class="bg-orange-50 hover:bg-orange-600 text-orange-600 hover:text-white border border-orange-300 font-extrabold px-4 py-1.5 rounded-xl text-xs transition">
+                  + ADD
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    // ==========================================
+    // 4. CLINIC / DOCTOR LAYOUT (Medical White + Instant OPD Appointment Form)
+    // ==========================================
+    else if (type === 'clinic') {
+      body.className = "bg-slate-50 text-slate-900 min-h-screen flex flex-col justify-between";
+      root.innerHTML = `
+        <header class="bg-white border-b border-slate-200 py-8 px-6">
+          <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+              <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">🩺 Verified Healthcare & Diagnostics</span>
+              <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">${name}</h1>
+              <p class="text-sm text-slate-600 mt-1">📍 ${addr} &nbsp;|&nbsp; 📞 Emergency/Reception: +${phone}</p>
+            </div>
+            <div class="text-right">
+              <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1.5 rounded-lg">⏰ OPD Hours: ${time}</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- 2-Column Doctor Info + Instant OPD Token Form -->
+        <section class="max-w-5xl mx-auto py-10 px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+              <h2 class="text-lg font-bold text-sky-700 mb-3">🏥 Available Medical Services</h2>
+              <ul class="space-y-2.5 text-sm text-slate-700">
+                <li>✔ General OPD Consultation & Health Checkup</li>
+                <li>✔ Blood Pressure, Sugar (Diabetes) & Fever Care</li>
+                <li>✔ Prescription, Routine Lab Tests & First-Aid</li>
+                <li>✔ Child, Family & Senior Citizen Healthcare</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+              <h2 class="text-lg font-bold text-sky-700 mb-3">🕒 Clinic Visiting Schedule</h2>
+              <table class="w-full text-left text-sm">
+                <tr class="border-b"><td class="py-2 font-semibold">Morning Shift</td><td class="py-2 text-slate-600">9:00 AM – 1:30 PM</td></tr>
+                <tr class="border-b"><td class="py-2 font-semibold">Evening Shift</td><td class="py-2 text-slate-600">5:00 PM – 9:00 PM</td></tr>
+                <tr><td class="py-2 font-semibold">Sunday / Emergency</td><td class="py-2 text-emerald-600 font-semibold">Prior Appointment</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Patient WhatsApp Token Booking Form -->
+          <div class="bg-white p-6 md:p-8 rounded-2xl border-2 border-sky-500 shadow-md">
+            <h2 class="text-xl font-extrabold text-slate-900">📅 Book OPD Appointment Token</h2>
+            <p class="text-xs text-slate-500 mt-1 mb-5">Lambi line se bachein — apna naam bhar kar WhatsApp par direct appointment confirm karein:</p>
+            <div class="space-y-4 text-sm">
+              <div>
+                <label class="block font-semibold mb-1">Patient Name *</label>
+                <input id="pt-name" type="text" placeholder="Enter patient full name" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5">
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block font-semibold mb-1">Age *</label>
+                  <input id="pt-age" type="number" placeholder="e.g. 28" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1">Preferred Shift</label>
+                  <select id="pt-shift" class="w-full border border-slate-300 rounded-xl px-3 py-2.5 bg-white">
+                    <option>Morning Shift</option>
+                    <option>Evening Shift</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block font-semibold mb-1">Problem / Symptoms (Optional)</label>
+                <input id="pt-prob" type="text" placeholder="e.g. Fever, Dental checkup, General OPD" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5">
+              </div>
+              <button onclick="bookOPD()" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 rounded-xl shadow transition">
+                📲 Confirm Token on WhatsApp
+              </button>
+            </div>
+          </div>
+        </section>
+      `;
+      window.bookOPD = () => {
+        const pName = document.getElementById('pt-name').value || 'Patient';
+        const pAge = document.getElementById('pt-age').value || '--';
+        const pShift = document.getElementById('pt-shift').value;
+        const pProb = document.getElementById('pt-prob').value || 'Consultation';
+        const msg = `Hello ${name}, I want to book an OPD Appointment:\n• Patient Name: ${pName}\n• Age: ${pAge}\n• Shift: ${pShift}\n• Purpose: ${pProb}`;
+        window.open(waLink(msg), '_blank');
+      };
+    }
+
+    // ==========================================
+    // 5. COACHING / INSTITUTE LAYOUT (Ticker + Batch Timing Table)
+    // ==========================================
+    else if (type === 'coaching') {
+      body.className = "bg-slate-950 text-white min-h-screen flex flex-col justify-between";
+      root.innerHTML = `
+        <!-- Moving Admission Notice Ticker -->
+        <div class="bg-blue-700 text-white text-xs py-2 overflow-hidden border-b border-blue-500">
+          <div class="animate-marquee font-semibold">
+            📢 ADMISSIONS OPEN FOR NEW SESSION! &nbsp;&nbsp;|&nbsp;&nbsp; 🎯 Free 3-Day Demo Classes Available &nbsp;&nbsp;|&nbsp;&nbsp; 📝 Printed Study Material & Weekly OMR Mock Tests &nbsp;&nbsp;|&nbsp;&nbsp; 📞 Call Now: +${phone}
+          </div>
         </div>
-        <a href="${waBase + encodeURIComponent('Hi ' + name + ', I want details about: ' + c.title)}" target="_blank" class="block ${t.btnBg} py-2.5 px-4 rounded-xl font-semibold transition">
-          Enquire on WhatsApp
-        </a>
-      </div>
-    `).join('');
+
+        <header class="max-w-5xl mx-auto py-12 px-6 text-center">
+          <span class="bg-yellow-400 text-black text-xs font-extrabold px-3 py-1 rounded-full uppercase">🏆 Top Result-Oriented Institute</span>
+          <h1 class="text-4xl md:text-5xl font-extrabold mt-4 text-white">${name}</h1>
+          <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto mt-2">📍 ${addr} &nbsp;|&nbsp; ⏰ ${time}</p>
+          <div class="mt-6 flex flex-wrap justify-center gap-4">
+            <a href="${waLink('Hello ' + name + ', I want to enquire about Admission & Free Demo Class!')}" target="_blank" class="bg-yellow-400 hover:bg-yellow-500 text-black font-extrabold py-3 px-7 rounded-xl text-sm shadow-lg">
+              🎓 Book Free Demo Class
+            </a>
+          </div>
+        </header>
+
+        <!-- Batch Timings & Courses Table (Unique to Coaching) -->
+        <section class="max-w-4xl mx-auto py-6 px-6">
+          <h2 class="text-xl font-bold text-yellow-400 mb-4">📚 Active Courses & Batch Schedule</h2>
+          <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-2xl">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-800 text-slate-300 text-xs uppercase">
+                <tr>
+                  <th class="p-4">Course / Class Batch</th>
+                  <th class="p-4">Key Features</th>
+                  <th class="p-4">Batch Status</th>
+                  <th class="p-4">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800">
+                <tr>
+                  <td class="p-4 font-bold">Foundation / Academic Batch</td>
+                  <td class="p-4 text-slate-400 text-xs">Full Syllabus + Printed Notes + Doubt Class</td>
+                  <td class="p-4"><span class="bg-green-900/50 text-green-400 text-xs px-2.5 py-1 rounded-full">Admission Open</span></td>
+                  <td class="p-4"><a href="${waLink('Hi ' + name + ', fees details for Foundation Batch?')}" target="_blank" class="text-yellow-400 font-bold text-xs underline">Ask Fee →</a></td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-bold">Board / Target Exam Special</td>
+                  <td class="p-4 text-slate-400 text-xs">Weekly Test Series + Previous 10 Yr Papers</td>
+                  <td class="p-4"><span class="bg-amber-900/50 text-amber-300 text-xs px-2.5 py-1 rounded-full">Limited Seats</span></td>
+                  <td class="p-4"><a href="${waLink('Hi ' + name + ', fees details for Target Batch?')}" target="_blank" class="text-yellow-400 font-bold text-xs underline">Ask Fee →</a></td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-bold">Special Skill / Computer Course</td>
+                  <td class="p-4 text-slate-400 text-xs">100% Practical Training + ISO Certificate</td>
+                  <td class="p-4"><span class="bg-green-900/50 text-green-400 text-xs px-2.5 py-1 rounded-full">New Batch</span></td>
+                  <td class="p-4"><a href="${waLink('Hi ' + name + ', fees details for Practical Course?')}" target="_blank" class="text-yellow-400 font-bold text-xs underline">Ask Fee →</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `;
+    }
+
+    // ==========================================
+    // 6. LOCAL SHOP / MOBILE & REPAIR HUB LAYOUT (Catalog Grid + Quick Quote Box)
+    // ==========================================
+    else {
+      body.className = "bg-slate-950 text-white min-h-screen flex flex-col justify-between";
+      const items = [
+        { icon: "📱", name: "Smartphone Display & Touch Replacement", tag: "1 Hour Service" },
+        { icon: "🔋", name: "Original Battery, Charging Jack & IC Fix", tag: "Warranty Available" },
+        { icon: "🎧", name: " Tempered Glass, Covers, Earbuds & Chargers", tag: "Wholesale Price" },
+        { icon: "💻", name: "Online Form, PAN, Aadhaar & Printout", tag: "Instant Cyber Work" },
+        { icon: "🌐", name: "Business Website, Poster & Excel Work", tag: "Digital Services" },
+        { icon: "🚚", name: "Bulk / Custom Order & Home Delivery", tag: "Direct WhatsApp" }
+      ];
+      root.innerHTML = `
+        <header class="bg-gradient-to-b from-emerald-900/50 to-slate-950 py-12 px-6 border-b border-slate-800">
+          <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+              <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">✔ Trusted Local Store & Service Hub</span>
+              <h1 class="text-3xl md:text-5xl font-extrabold mt-3">${name}</h1>
+              <p class="text-sm text-slate-300 mt-2">📍 ${addr} &nbsp;|&nbsp; ⏰ ${time} &nbsp;|&nbsp; 📞 +${phone}</p>
+            </div>
+            <!-- Quick WhatsApp Price Check Bar -->
+            <div class="bg-slate-900 p-4 rounded-2xl border border-emerald-800/60 w-full md:w-80">
+              <p class="text-xs font-bold text-emerald-400 mb-2">⚡ Check Price / Repair Rate Instantly:</p>
+              <div class="flex gap-2">
+                <input id="shop-item" type="text" placeholder="Type model or item name..." class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs w-full text-white">
+                <button onclick="askPrice()" class="bg-emerald-600 hover:bg-emerald-700 px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap">Ask Rate</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="max-w-5xl mx-auto py-10 px-6">
+          <h2 class="text-2xl font-bold mb-6">🛒 Products & Services Catalog</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            ${items.map(i => `
+              <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <span class="text-3xl">${i.icon}</span>
+                    <span class="text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded-full">${i.tag}</span>
+                  </div>
+                  <h3 class="font-bold text-base mt-4">${i.name}</h3>
+                </div>
+                <a href="${waLink('Hi ' + name + ', please share rate/details for: ' + i.name)}" target="_blank" class="mt-5 block text-center bg-slate-800 hover:bg-emerald-600 py-2 rounded-xl text-xs font-bold transition">
+                  💬 Enquire Rate on WhatsApp
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+      window.askPrice = () => {
+        const q = document.getElementById('shop-item').value || 'Product/Service';
+        window.open(waLink(`Hi ${name}, please tell me the price/availability for: ${q}`), '_blank');
+      };
+    }
   </script>
 </body>
 </html>
